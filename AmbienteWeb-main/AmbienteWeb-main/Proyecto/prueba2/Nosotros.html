@@ -24,18 +24,21 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">Inicio</a>
                     </li>
-                    
-                    <!-- Dropdown de Servicios corregido -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="AgendarCita.html" id="agendarCitaLink">Agendar Cita</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Servicios.html">Servicios</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Nosotros</a>
+                        <a class="nav-link" href="Nosotros.html">Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contacto</a>
+                        <a class="nav-link" href="Contacto.html">Contacto</a>
                     </li>
+                    <li class="nav-item" id="loginLogoutItem">
+                        <a class="nav-link" href="login.html" id="loginLogoutLink">Iniciar Sesión</a>
+                    </li>                      
                 </ul>
             </div>
         </div>
@@ -47,10 +50,42 @@
     </main>
 
     <footer class="py-5 text-center">
-        <p>&copy; 2025 . Todos los derechos reservados.</p>
+        <p>&copy; 2025 Clínica Fidelitas. Todos los derechos reservados.</p>
     </footer>
 
     <script src="Nosotros.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginLogoutLink = document.getElementById('loginLogoutLink');
+            const agendarCitaLink = document.getElementById('agendarCitaLink');
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        
+            if (isLoggedIn) {
+                loginLogoutLink.textContent = 'Cerrar Sesión';
+                loginLogoutLink.href = '#';
+                loginLogoutLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('isLoggedIn');
+                    window.location.href = 'index.html';
+                });
+                if (agendarCitaLink) {
+                    agendarCitaLink.style.display = 'block';
+                }
+            } else {
+                loginLogoutLink.textContent = 'Iniciar Sesión';
+                loginLogoutLink.href = 'login.html';
+                if (agendarCitaLink) {
+                    agendarCitaLink.style.display = 'none';
+                }
+            }
+        
+            // Verificamos si estamos en la página de Agendar Cita
+            if (window.location.pathname.includes('AgendarCita.html') && !isLoggedIn) {
+                window.location.href = 'login.html';
+            }
+        });
+        </script>
   
 </header>
 
