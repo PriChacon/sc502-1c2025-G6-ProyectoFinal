@@ -6,24 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
-    <div id="contenido"></div>
-
+    <script src="Servicios.js" defer></script>
     <link rel="stylesheet" href="styles.css">
-    <title>Clínica Fidelitas</title>
-    <style>
-        .nav-item.dropdown:hover .dropdown-menu {
-            display: block;
-            margin-top: 0;
-        }
-
-        .nav-item.dropdown .dropdown-toggle::after {
-            content: none;
-        }
-    </style>
+    <title>Configuración de Servicios</title>
 </head>
 
 <body>
+
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
@@ -59,7 +48,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <li><a class="dropdown-item" href="serviciosConfiguracion.html">Servicios</a></li>
-                                <li><a class="dropdown-item" href="usuariosConfiguracion.html">Usuario</a></li>
+                                <li><a class="dropdown-item" href="usuariosConfiguracion.html">Ususarios</a></li>
                                 <li><a class="dropdown-item" href="horariosConfiguracion.html">Horarios</a></li>
                             </ul>
                         </li>
@@ -68,55 +57,60 @@
             </div>
         </nav>
 
-        <div class="background-image">
-            <div class="background-content">
-                <h1>Bienvenido a Clínica Fidelitas</h1>
-                <h2>Su Salud, Nuestra Prioridad</h2>
-                <p>Ofrecemos atención médica de calidad con un enfoque centrado en el paciente. Nuestro equipo de profesionales está comprometido con su bienestar y comodidad.</p>
-                <a href="login.html" class="btn btn-primary">Iniciar Sesión</a>
+        
+    </header>
+
+    <div class="container mt-5">
+        <h1 class="text-center">Configuración de Servicios</h1>
+        <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#serviceModal">Agregar Servicio</button>
+
+       
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="serviceTableBody">
+            
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal para agregar/modificar servicio -->
+    <div class="modal fade" id="serviceModal" tabindex="-1" aria-labelledby="serviceModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="serviceModalLabel">Agregar Servicio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="serviceForm">
+                        <div class="mb-3">
+                            <label for="serviceName" class="form-label">Nombre del Servicio</label>
+                            <input type="text" class="form-control" id="serviceName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="serviceDescription" class="form-label">Descripción del Servicio</label>
+                            <textarea class="form-control" id="serviceDescription" rows="3" required></textarea>
+                        </div>
+                        <input type="hidden" id="serviceIndex">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="saveService(
+                        document.getElementById('serviceName').value,
+                        document.getElementById('serviceDescription').value,
+                        document.getElementById('serviceIndex').value || null
+                    )">Guardar</button>
+                </div>
             </div>
         </div>
-    </header>
-    <footer class="py-5 text-center">
-        <p>&copy; 2025 Clínica Fidelitas. Todos los derechos reservados.</p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginLogoutLink = document.getElementById('loginLogoutLink');
-            const agendarCitaLink = document.getElementById('agendarCitaLink');
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-        
-            if (isLoggedIn) {
-                loginLogoutLink.textContent = 'Cerrar Sesión';
-                loginLogoutLink.href = '#';
-                loginLogoutLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    localStorage.removeItem('isLoggedIn');
-                    window.location.href = 'index.html';
-                });
-                if (agendarCitaLink) {
-                    agendarCitaLink.style.display = 'block';
-                }
-            } else {
-                loginLogoutLink.textContent = 'Iniciar Sesión';
-                loginLogoutLink.href = 'login.html';
-                if (agendarCitaLink) {
-                    agendarCitaLink.style.display = 'none';
-                }
-            }
-        
-            // Verificamos si estamos en la página de Agendar Cita
-            if (window.location.pathname.includes('AgendarCita.html') && !isLoggedIn) {
-                window.location.href = 'login.html';
-            }
-        });
-        </script>
-
+    </div>
 </body>
 
 </html>
-
-
-
-

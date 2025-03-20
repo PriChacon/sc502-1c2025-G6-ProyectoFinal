@@ -66,25 +66,82 @@ document.addEventListener("DOMContentLoaded", function () {
             description: "Diagnóstico y tratamiento de enfermedades del sistema digestivo. Incluye endoscopias, colonoscopias, manejo de enfermedades hepáticas y trastornos gastrointestinales."
         }
     ];
+    const taskList = document.getElementById('Servicios-list') || null; // Para servicios.html
+    const serviceTableBody = document.getElementById('serviceTableBody') || null; // Para serviciosConfiguracion.html
 
-    function loadTasks() {
-        const taskList = document.getElementById('Servicios-list');
+    // Función para renderizar servicios en servicios.html
+    function renderCards() {
+        if (!taskList) return;
         taskList.innerHTML = '';
-
         servicios.forEach(function (servicio) {
             const taskCard = document.createElement('div');
             taskCard.className = 'col-md-6 col-lg-4 mb-4 d-flex justify-content-center';
             taskCard.innerHTML = `
-            <div class="card shadow-sm" style="width: 18rem; border-radius: 10px;">
-                <div class="card-body text-center">
-                    <h5 class="card-title text-primary">${servicio.title}</h5>
-                    <p class="card-text text-muted">${servicio.description}</p>
+                <div class="card shadow-sm" style="width: 18rem; border-radius: 10px;">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary">${servicio.title}</h5>
+                        <p class="card-text text-muted">${servicio.description}</p>
+                    </div>
                 </div>
-            </div>
             `;
             taskList.appendChild(taskCard);
         });
     }
 
-    loadTasks();
+    // Función para renderizar servicios en serviciosConfiguracion.html
+    function renderTable() {
+        if (!serviceTableBody) return;
+        serviceTableBody.innerHTML = '';
+        servicios.forEach((servicio, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${servicio.title}</td>
+                <td>${servicio.description}</td>
+                <td>
+                    <button class="btn btn-warning btn-sm" onclick="editService(${index})">Modificar</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteService(${index})">Eliminar</button>
+                </td>
+            `;
+            serviceTableBody.appendChild(row);
+        });
+    }
+
+    // Función para agregar o modificar un servicio
+    window.saveService = function (title, description, index = null) {
+        if (index === null) {
+            // Agregar nuevo servicio
+            const newService = {
+                id: servicios.length + 1,
+                title,
+                description
+            };
+            servicios.push(newService);
+        } else {
+            // Modificar servicio existente
+            servicios[index].title = title;
+            servicios[index].description = description;
+        }
+        renderTable();
+    };
+
+    // Función para eliminar un servicio
+    window.deleteService = function (index) {
+        servicios.splice(index, 1);
+        renderTable();
+    };
+
+    // Función para editar un servicio
+    window.editService = function (index) {
+        const servicio = servicios[index];
+        document.getElementById('serviceName').value = servicio.title;
+        document.getElementById('serviceDescription').value = servicio.description;
+        document.getElementById('serviceIndex').value = index;
+
+        const modal = new bootstrap.Modal(document.getElementById('serviceModal'));
+        modal.show();
+    };
+
+    // Renderizar según la página
+    renderCards();
+    renderTable();
 });
