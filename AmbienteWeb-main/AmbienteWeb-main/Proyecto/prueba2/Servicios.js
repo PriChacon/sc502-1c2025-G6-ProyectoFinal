@@ -66,10 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
             description: "Diagnóstico y tratamiento de enfermedades del sistema digestivo. Incluye endoscopias, colonoscopias, manejo de enfermedades hepáticas y trastornos gastrointestinales."
         }
     ];
-    const taskList = document.getElementById('Servicios-list') || null; // Para servicios.html
-    const serviceTableBody = document.getElementById('serviceTableBody') || null; // Para serviciosConfiguracion.html
-
-    // Función para renderizar servicios en servicios.html
+    const taskList = document.getElementById('Servicios-list') || null; 
+    const serviceTableBody = document.getElementById('serviceTableBody') || null; 
     function renderCards() {
         if (!taskList) return;
         taskList.innerHTML = '';
@@ -88,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Función para renderizar servicios en serviciosConfiguracion.html
+ 
     function renderTable() {
         if (!serviceTableBody) return;
         serviceTableBody.innerHTML = '';
@@ -106,10 +104,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Función para agregar o modificar un servicio
+   
     window.saveService = function (title, description, index = null) {
         if (index === null) {
-            // Agregar nuevo servicio
+           
             const newService = {
                 id: servicios.length + 1,
                 title,
@@ -117,20 +115,18 @@ document.addEventListener("DOMContentLoaded", function () {
             };
             servicios.push(newService);
         } else {
-            // Modificar servicio existente
+        
             servicios[index].title = title;
             servicios[index].description = description;
         }
         renderTable();
     };
 
-    // Función para eliminar un servicio
     window.deleteService = function (index) {
         servicios.splice(index, 1);
         renderTable();
     };
 
-    // Función para editar un servicio
     window.editService = function (index) {
         const servicio = servicios[index];
         document.getElementById('serviceName').value = servicio.title;

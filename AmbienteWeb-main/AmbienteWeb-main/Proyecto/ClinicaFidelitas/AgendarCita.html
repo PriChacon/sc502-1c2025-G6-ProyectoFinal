@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Agendar Cita - Clínica Fidelitas</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img src="imagenes/logo.png" alt="Logo" id="logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="AgendarCita.html" id="agendarCitaLink">Agendar Cita</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Servicios.html">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Nosotros.html">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contacto.html">Contacto</a>
+                        </li>
+                        <li class="nav-item" id="loginLogoutItem">
+                            <a class="nav-link" href="login.html" id="loginLogoutLink">Iniciar Sesión</a>
+                        </li>                      
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container my-5">
+        <h1 class="text-center mb-4">Agendar Cita</h1>
+        <form id="citaForm">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre completo</label>
+                <input type="text" class="form-control" id="nombre" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="telefono" required>
+            </div>
+            <div class="mb-3">
+                <label for="especialidad" class="form-label">Especialidad</label>
+                <select class="form-select" id="especialidad" required>
+                    <option value="">Seleccione una especialidad</option>
+                    <!-- Las opciones se cargarán dinámicamente con JavaScript -->
+                </select>
+                <div class="mb-3">
+                    <label for="doctor" class="form-label">Doctor</label>
+                    <select class="form-select" id="doctor" required>
+                        <option value="">Seleccione un doctor</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="fecha" required>
+            </div>
+            <div class="mb-3">
+                <label for="hora" class="form-label">Hora</label>
+                <select class="form-select" id="hora" required>
+                    <option value="">Seleccione una hora</option>
+                    <!-- Las opciones se cargarán dinámicamente con JavaScript -->
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Agendar Cita</button>
+        </form>
+    </main>
+
+    <footer class="py-5 text-center">
+        <p>&copy; 2025 Clínica Fidelitas. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/AgendarCita.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginLogoutLink = document.getElementById('loginLogoutLink');
+            const agendarCitaLink = document.getElementById('agendarCitaLink');
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+            if (isLoggedIn) {
+                loginLogoutLink.textContent = 'Cerrar Sesión';
+                loginLogoutLink.href = '#';
+                loginLogoutLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    localStorage.removeItem('isLoggedIn');
+                    window.location.href = 'index.html';
+                });
+                if (agendarCitaLink) {
+                    agendarCitaLink.style.display = 'block';
+                }
+            } else {
+                loginLogoutLink.textContent = 'Iniciar Sesión';
+                loginLogoutLink.href = 'login.html';
+                if (agendarCitaLink) {
+                    agendarCitaLink.style.display = 'none';
+                }
+            }
+
+            // Verificamos si estamos en la página de Agendar Cita
+            if (window.location.pathname.includes('AgendarCita.html') && !isLoggedIn) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            if (!isLoggedIn) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+
+</body>
+</html>
