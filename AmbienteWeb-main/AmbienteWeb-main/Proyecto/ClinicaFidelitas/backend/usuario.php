@@ -27,13 +27,31 @@ function createUser($nombre_usuario, $contraseña, $id_rol)
         return false;
     }
 }
-
+function getRoles()
+{
+    global $pdo;
+    try {
+        $sql = "SELECT id_rol, nombre_rol FROM ROL";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("Error de conexión: " . $e->getMessage());
+    }
+}
 
 function getUsers()
 {
     global $pdo;
     try {
-        $sql = "SELECT id_usuario,nombre_usuario,contraseña,id_rol FROM USUARIO";
+        $sql = "SELECT 
+                    U.id_usuario,
+                    U.nombre_usuario,
+                    U.contraseña,
+                    U.id_rol,
+                    R.nombre_rol 
+                FROM USUARIO U
+                INNER JOIN ROL R ON U.id_rol = R.id_rol";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -55,22 +73,32 @@ function deleteUser($id_usuario)
     }
 }
 
-function editUser($id_usuario, $nombre_usuario, $contraseña, $id_rol)
+function editUser($id_usuario, $nombre_usuario, $id_rol, $contraseña = null)
 {
     global $pdo;
     try {
-        $sql = "UPDATE USUARIO SET nombre_usuario = :nombre_usuario, contraseña = :contraseña, id_rol = :id_rol WHERE id_usuario = :id_usuario";
+        $sql = "UPDATE USUARIO SET nombre_usuario = :nombre_usuario, id_rol = :id_rol";
+        $params = [
+            ':nombre_usuario' => $nombre_usuario,
+            ':id_rol' => $id_rol,
+            ':id_usuario' => $id_usuario,
+        ];
+
+        if ($contraseña !== null && $contraseña !== '') {
+            $passwordHashed = password_hash($contraseña, PASSWORD_BCRYPT);
+            $sql .= ", contraseña = :pwd"; 
+            $params[':pwd'] = $passwordHashed;   
+        }
+
+        $sql .= " WHERE id_usuario = :id_usuario";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':id_usuario', $id_usuario);
-        $stmt->bindParam(':nombre_usuario', $nombre_usuario);
-        $stmt->bindParam(':contraseña', $contraseña);
-        $stmt->bindParam(':id_rol', $id_rol);
-        return $stmt->execute();
+
+        return $stmt->execute($params);
+
     } catch (PDOException $e) {
-        die("Error de conexion: " . $e->getMessage());
+        die("Error de conexión: " . $e->getMessage());
     }
 }
-
 
 $method = $_SERVER['REQUEST_METHOD'];
 header('Content-Type: application/json');
@@ -104,7 +132,7 @@ try {
                 echo json_encode(["error" => "nombre_usuario, contraseña e id_rol son requeridos"]);
             }
             break;
-        case 'Delete':
+        case 'DELETE':
             $input = getJsonInput();
             if (isset($input['id_usuario'])) {
                 $id_usuario = $input['id_usuario'];
@@ -120,14 +148,14 @@ try {
                 echo json_encode(["error" => "id_usuario es requerido"]);
             }
             break;
-        case 'Put':
+        case 'PUT':
             $input = getJsonInput();
-            if (isset($input['id_usuario']) && isset($input['nombre_usuario']) && isset($input['contraseña']) && isset($input['id_rol'])) {
+            if (isset($input['id_usuario']) && isset($input['nombre_usuario']) && isset($input['id_rol'])) {
                 $id_usuario = $input['id_usuario'];
                 $nombre_usuario = $input['nombre_usuario'];
-                $contraseña = $input['contraseña'];
+                $contraseña = isset($input['contraseña']) ? $input['contraseña'] : null;
                 $id_rol = $input['id_rol'];
-                if (editUser($id_usuario, $nombre_usuario, $contraseña, $id_rol)) {
+                if (editUser($id_usuario, $nombre_usuario, $id_rol, $contraseña)) {
                     http_response_code(200);
                     echo json_encode(["message" => "Usuario editado"]);
                 } else {
@@ -136,7 +164,7 @@ try {
                 }
             } else {
                 http_response_code(400);
-                echo json_encode(["error" => "id_usuario, nombre_usuario, contraseña e id_rol son requeridos"]);
+                echo json_encode(["error" => "id_usuario, nombre_usuario e id_rol son requeridos"]);
             }
             break;
         default:

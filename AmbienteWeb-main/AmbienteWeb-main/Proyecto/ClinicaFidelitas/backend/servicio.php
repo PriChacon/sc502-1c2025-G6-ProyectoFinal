@@ -67,11 +67,11 @@ function getJsonInput()
 try{
 
     switch($method){
-        case 'Get':
+        case 'GET':
             $servicios = getServicios();
             echo json_encode($servicios);
             break;
-        case 'Post':
+        case 'POST':
             $input = getJsonInput();
             if(isset($input['nombre_servicio']) && isset($input['descripcion']) && isset($input['costo'])){
                 $nombre_servicio = $input['nombre_servicio'];
@@ -89,7 +89,7 @@ try{
                 echo json_encode(["error" => "Nombre, descripcion y costo son requeridos"]);
             }
             break;
-        case 'Delete':
+        case 'DELETE':
             $input = getJsonInput();
             if(isset($input['id_servicio'])){
                 $id_servicio = $input['id_servicio'];
@@ -105,7 +105,7 @@ try{
                 echo json_encode(["error" => "ID de servicio es requerido"]);
             }
             break;
-        case 'Put':
+        case 'PUT':
             $input = getJsonInput();
             if(isset($input['id_servicio']) && isset($input['nombre_servicio']) && isset($input['descripcion']) && isset($input['costo'])){
                 $id_servicio = $input['id_servicio'];

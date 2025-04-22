@@ -26,7 +26,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="AgendarCita.html" id="agendarCitaLink">Agendar Cita</a>
-                        </li>                        
+                        </li>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Servicios.html">Servicios</a>
@@ -39,8 +39,7 @@
                         </li>
                         <li class="nav-item" id="loginLogoutItem">
                             <a class="nav-link" href="login.html" id="loginLogoutLink">Iniciar Sesión</a>
-                        </li>  
-                        
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Configuraciones
@@ -55,31 +54,26 @@
                 </div>
             </div>
         </nav>
-
-        
     </header>
 
     <div class="container mt-5">
         <h1 class="text-center">Configuración de Usuarios</h1>
         <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#userModal">Agregar Usuario</button>
 
-   
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Email</th>
+                    <th>Contraseña</th>
                     <th>Rol</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody id="userTableBody">
-          
-            </tbody>
+                </tbody>
         </table>
     </div>
 
-   
     <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -88,14 +82,14 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="userForm">
+                    <form id="userForm" onsubmit="saveUser(event)">
                         <div class="mb-3">
                             <label for="userName" class="form-label">Nombre del Usuario</label>
                             <input type="text" class="form-control" id="userName" required>
                         </div>
                         <div class="mb-3">
-                            <label for="userEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="userEmail" required>
+                            <label for="userPassword" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="userPassword">
                         </div>
                         <div class="mb-3">
                             <label for="userRole" class="form-label">Rol</label>
@@ -104,18 +98,13 @@
                                 <option value="Usuario">Usuario</option>
                             </select>
                         </div>
-                        <input type="hidden" id="userIndex">
+                        <input type="hidden" id="userId">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" onclick="saveUser(
-                        document.getElementById('userName').value,
-                        document.getElementById('userEmail').value,
-                        document.getElementById('userRole').value,
-                        document.getElementById('userIndex').value || null
-                    )">Guardar</button>
-                </div>
+                    </div>
             </div>
         </div>
     </div>
