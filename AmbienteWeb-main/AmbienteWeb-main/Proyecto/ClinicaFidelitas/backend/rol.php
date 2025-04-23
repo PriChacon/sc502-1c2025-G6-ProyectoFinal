@@ -1,5 +1,6 @@
 <?php
 
+require_once 'db.php';
 function createRol($nombre_rol)
 {
     global $pdo;

@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const API_URL = 'backend/usuario.php';
 
+const API_URL_Rol = 'backend/rol.php';
+
 let usuarios = [];
 let roles = [];
 
@@ -46,7 +48,7 @@ function fetchUsers() {
 }
 
 function loadRoles() {
-    fetch(`${API_URL}?action=getRoles`)
+    fetch(API_URL_Rol)
         .then(res => {
             if (!res.ok) {
                 return res.json().then(err => { throw new Error(err.error || 'Error al obtener roles'); });
