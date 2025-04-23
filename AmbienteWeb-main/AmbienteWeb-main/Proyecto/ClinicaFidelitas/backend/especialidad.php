@@ -12,14 +12,13 @@ function createEspecialidad($nombre)
     } catch (PDOException $e) {
         die("Error de conexion: " . $e->getMessage());
     }
-
 }
 
 function getEspecialidades()
 {
     global $pdo;
     try {
-        $sql = "SELECT id_especialidad,nombre_especialidad FROM ESPECIALIDAD";
+        $sql = "SELECT id_especialidad, nombre_especialidad FROM ESPECIALIDAD";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -41,7 +40,6 @@ function deleteEspecialidad($id)
     }
 }
 
-
 function updateEspecialidad($id, $nombre)
 {
     global $pdo;
@@ -60,7 +58,7 @@ function getEspecialidadById($id)
 {
     global $pdo;
     try {
-        $sql = "SELECT id_especialidad,nombre_especialidad FROM ESPECIALIDAD WHERE id_especialidad = :id";
+        $sql = "SELECT id_especialidad, nombre_especialidad FROM ESPECIALIDAD WHERE id_especialidad = :id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -75,7 +73,11 @@ header('Content-Type: application/json');
 
 function getJsonInput()
 {
-    return json_decode(file_get_contents("php://input"), associative: true);
+    $input = file_get_contents("php://input");
+    if (!empty($input)) {
+        return json_decode($input, true);
+    }
+    return null;
 }
 
 try {
@@ -101,9 +103,15 @@ try {
             }
             break;
         case 'DELETE':
-            $input = getJsonInput();
-            if (isset($input['id_especialidad'])) {
-                $id = $input['id_especialidad'];
+            // Check both URL parameters and JSON input
+            $id = isset($_GET['id']) ? $_GET['id'] : null;
+            
+            if (!$id) {
+                $input = getJsonInput();
+                $id = isset($input['id_especialidad']) ? $input['id_especialidad'] : null;
+            }
+            
+            if ($id) {
                 if (deleteEspecialidad($id)) {
                     http_response_code(200);
                     echo json_encode(["message" => "Especialidad eliminada exitosamente"]);
@@ -117,10 +125,17 @@ try {
             }
             break;
         case 'PUT':
+            // Check both URL parameters and JSON input
+            $id = isset($_GET['id']) ? $_GET['id'] : null;
             $input = getJsonInput();
-            if (isset($input['id_especialidad']) && isset($input['nombre_especialidad'])) {
+            
+            if (!$id && isset($input['id_especialidad'])) {
                 $id = $input['id_especialidad'];
-                $nombre = $input['nombre_especialidad'];
+            }
+            
+            $nombre = isset($input['nombre_especialidad']) ? $input['nombre_especialidad'] : null;
+            
+            if ($id && $nombre) {
                 if (updateEspecialidad($id, $nombre)) {
                     http_response_code(200);
                     echo json_encode(["message" => "Especialidad actualizada exitosamente"]);
@@ -136,13 +151,10 @@ try {
         default:
             http_response_code(405);
             echo json_encode(["error" => "Metodo no permitido"]);
-
     }
 } catch (Exception $e) {
-    http_response_code(400);
-    echo json_encode(["error" => "Error al decodificar JSON"]);
+    http_response_code(500);
+    echo json_encode(["error" => "Error en el servidor: " . $e->getMessage()]);
     exit;
 }
-
-
 ?>
