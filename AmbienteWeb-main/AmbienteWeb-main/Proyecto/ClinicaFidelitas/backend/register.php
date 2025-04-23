@@ -26,7 +26,7 @@ if ($method == 'POST') {
     if (isset($input['nombre_usuario']) && isset($input['contraseña']) ) {
         $username = $input['nombre_usuario'];
         $password = $input['contraseña'];
-        $id_rol = 1;
+        $id_rol = 2;
         if (userRegistry($username, $password, $id_rol)) {
             http_response_code(200);
             echo json_encode(["message" => "Registro de usuario exitoso"]);

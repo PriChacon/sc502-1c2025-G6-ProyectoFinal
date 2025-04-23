@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
 const API_URL = "backend/rol.php";
 let roles = [];
 
-// Corregido: cambiar roleModal a rolModal para coincidir con el HTML
 const rolModal = document.getElementById("rolModal");
 
 rolModal.addEventListener("show.bs.modal", function (event) {
@@ -135,7 +134,7 @@ function handleEditSubmit(event) {
             })
             .then((data) => {
                 console.log("Rol modificado:", data);
-                fetchRoles(); // Recargar la lista de roles
+                fetchRoles(); 
                 const modal = bootstrap.Modal.getInstance(rolModal);
                 modal.hide();
             })
