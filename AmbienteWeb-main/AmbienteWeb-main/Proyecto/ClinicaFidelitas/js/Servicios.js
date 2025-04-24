@@ -30,13 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const taskCard = document.createElement('div');
             taskCard.className = 'col-md-6 col-lg-4 mb-4 d-flex justify-content-center';
             taskCard.innerHTML = `
-                <div class="card shadow-sm" style="width: 18rem; border-radius: 10px;">
-                    <div class="card-body text-center">
-                        <h5 class="card-title text-primary">${servicio.nombre_servicio}</h5>
-                        <p class="card-text text-muted">${servicio.descripcion}</p>
-                        <p class="card-text text-muted">₡${servicio.costo}</p>
-                    </div>
-                </div>
+                <div class="card shadow h-100 border-0 rounded-3">
+    <div class="card-body text-center p-4">
+        <h5 class="card-title fw-bold text-primary mb-3">${servicio.nombre_servicio}</h5>
+        <p class="card-text text-muted mb-3">${servicio.descripcion}</p>
+    </div>
+</div>
             `;
             taskList.appendChild(taskCard);
         });

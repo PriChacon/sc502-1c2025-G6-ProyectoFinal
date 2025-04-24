@@ -2,7 +2,8 @@
 require_once 'db.php';
 
 // Crear un médico
-function createMedico($nombre_medico, $apellido, $id_especialidad, $telefono, $horario) {
+function createMedico($nombre_medico, $apellido, $id_especialidad, $telefono, $horario)
+{
     global $pdo;
     try {
         $sql = "INSERT INTO MEDICO (nombre_medico, apellido, id_especialidad, telefono, horario) 
@@ -20,7 +21,8 @@ function createMedico($nombre_medico, $apellido, $id_especialidad, $telefono, $h
 }
 
 // Obtener todos los médicos
-function getMedicos() {
+function getMedicos()
+{
     global $pdo;
     try {
         $sql = "SELECT 
@@ -40,7 +42,8 @@ function getMedicos() {
     }
 }
 // Actualizar un médico
-function updateMedico($id_medico, $nombre_medico, $apellido, $id_especialidad, $telefono, $horario) {
+function updateMedico($id_medico, $nombre_medico, $apellido, $id_especialidad, $telefono, $horario)
+{
     global $pdo;
     try {
         $sql = "UPDATE MEDICO 
@@ -60,7 +63,8 @@ function updateMedico($id_medico, $nombre_medico, $apellido, $id_especialidad, $
     }
 }
 
-function getMedicoById($id_medico) {
+function getMedicoById($id_medico)
+{
     global $pdo;
     try {
         $sql = "SELECT 
@@ -82,7 +86,8 @@ function getMedicoById($id_medico) {
     }
 }
 // Eliminar un médico
-function deleteMedico($id_medico) {
+function deleteMedico($id_medico)
+{
     global $pdo;
     try {
         $sql = "DELETE FROM MEDICO WHERE id_medico = :id_medico";
@@ -94,16 +99,41 @@ function deleteMedico($id_medico) {
     }
 }
 
+function getMedicosByEspecialidad($id_especialidad)
+{
+    global $pdo;
+    try {
+        $sql = "SELECT
+                    m.id_medico,
+                    m.nombre_medico,
+                    m.apellido,
+                    e.nombre_especialidad,
+                    m.telefono,
+                    m.horario
+                FROM MEDICO m
+                LEFT JOIN ESPECIALIDAD e ON m.id_especialidad = e.id_especialidad
+                WHERE m.id_especialidad = :id_especialidad";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id_especialidad', $id_especialidad);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("Error al obtener médicos por especialidad: " . $e->getMessage());
+    }
+}
+
+
 
 $method = $_SERVER['REQUEST_METHOD'];
 header('Content-Type: application/json');
 
-function getJsonInput() {
+function getJsonInput()
+{
     $json = file_get_contents('php://input');
     return json_decode($json, true);
 }
 
-try{
+try {
     switch ($method) {
         case 'POST':
             $data = getJsonInput();
@@ -115,7 +145,10 @@ try{
             }
             break;
         case 'GET':
-            if (isset($_GET['id'])) {
+            if (isset($_GET['id_especialidad'])) {
+                $medicos = getMedicosByEspecialidad($_GET['id_especialidad']);
+                echo json_encode($medicos);
+            } elseif (isset($_GET['id'])) {
                 $medico = getMedicoById($_GET['id']);
                 echo json_encode($medico);
             } else {
@@ -146,10 +179,9 @@ try{
 } catch (Exception $e) {
     echo json_encode(['error' => 'Error: ' . $e->getMessage()]);
 
-}catch (Exception $e) {
+} catch (Exception $e) {
     http_response_code(500);
     echo json_encode(["error" => "Error en el servidor: " . $e->getMessage()]);
     exit;
 }
 ?>
-

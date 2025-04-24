@@ -1,72 +1,184 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // especialidades y doctores
-    const especialidades = {
-        "Medicina General": ["Dr. Juan Pérez", "Dr. María Gómez"],
-        "Pediatría": ["Dr. Luis Ramírez", "Dr. Ana Rodríguez"],
-        "Ginecología": ["Dr. Fernando Sánchez", "Dra. Laura Fernández"],
-        "Cardiología": ["Dr. Jorge Herrera", "Dr. Patricia López"],
-        "Dermatología": ["Dr. Andrés Castro", "Dra. Sofia Muñoz"],
-        "Fisioterapia": ["Dr. Carlos Méndez", "Dra. Elena Vargas"],
-        "Psicología": ["Dr. Ricardo Morales", "Dra. Valeria Ortega"],
-        "Medicina Interna": ["Dr. Sergio Ramírez", "Dra. Natalia Jiménez"],
-        "Geriatría": ["Dr. Ernesto Paniagua", "Dra. Beatriz Solano"],
-        "Obstetricia": ["Dr. Gabriel Torres", "Dra. Mónica Herrera"],
-        "Gastroenterología": ["Dr. Álvaro Rojas", "Dra. Carolina Castro"]
-    };
+document.addEventListener("DOMContentLoaded", function () {
 
-    const selectEspecialidad = document.getElementById('especialidad');
-    const selectDoctor = document.getElementById('doctor');
-    const selectHora = document.getElementById('hora');
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (!isLoggedIn) {
+        window.location.href = 'login.html';
+    } else {
 
-    
-    Object.keys(especialidades).forEach(esp => {
-        let option = document.createElement('option');
-        option.value = esp;
-        option.textContent = esp;
-        selectEspecialidad.appendChild(option);
-    });
+        fetchPacientes();
+        fetchEspecialidades();
+        fetchServicios();
+        populateHoras();
 
-    // Llenar el select de horas
-    for (let i = 8; i <= 20; i++) {
-        let hour = i < 10 ? '0' + i : i;
-        let option = document.createElement('option');
-        option.value = `${hour}:00`;
-        option.textContent = `${hour}:00`;
-        selectHora.appendChild(option);
+        const especialidadSelect = document.getElementById('especialidad');
+        if (especialidadSelect) {
+            especialidadSelect.addEventListener('change', function () {
+                const especialidadId = this.value;
+                if (especialidadId) {
+                    fetchDoctores(especialidadId);
+                } else {
+                    document.getElementById('doctor').innerHTML = '<option value="">Seleccione un doctor</option>';
+                }
+            });
+        }
+
+        const citaForm = document.getElementById('citaForm');
+        if (citaForm) {
+            citaForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                agendarCita();
+            });
+        }
     }
 
-    //Actualizar doctores cuando se seleccione una especialidad
-    selectEspecialidad.addEventListener("change", function() {
-        const doctores = especialidades[this.value] || [];
-        selectDoctor.innerHTML = ""; // Limpiar doctores previos
-
-        let defaultOption = document.createElement('option');
-        defaultOption.value = "";
-        defaultOption.textContent = "Seleccione un doctor";
-        selectDoctor.appendChild(defaultOption);
-
-        doctores.forEach(doc => {
-            let option = document.createElement('option');
-            option.value = doc;
-            option.textContent = doc;
-            selectDoctor.appendChild(option);
+    const especialidadSelectOutside = document.getElementById('especialidad');
+    if (especialidadSelectOutside) {
+        especialidadSelectOutside.addEventListener('change', function () {
+            const especialidadId = this.value;
+            if (especialidadId) {
+                fetchDoctores(especialidadId);
+            } else {
+                document.getElementById('doctor').innerHTML = '<option value="">Seleccione un doctor</option>';
+            }
         });
-    });
+    }
 
-    document.getElementById('citaForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const nombre = document.getElementById('nombre').value;
-        const email = document.getElementById('email').value;
-        const telefono = document.getElementById('telefono').value;
-        const especialidad = document.getElementById('especialidad').value;
-        const doctor = document.getElementById('doctor').value;
-        const fecha = document.getElementById('fecha').value;
-        const hora = document.getElementById('hora').value;
-
-        console.log("Cita agendada:", { nombre, email, telefono, especialidad, doctor, fecha, hora });
-        
-        alert("Cita agendada con éxito!");
-        this.reset(); 
-    });
+    // ELIMINAR ESTE BLOQUE DE CÓDIGO
+    // document.getElementById('citaForm').addEventListener('submit', function (e) {
+    //     e.preventDefault();
+    //     agendarCita();
+    // });
 });
+
+const PACIENTES_API_URL = "backend/paciente.php";
+const ESPECIALIDADES_API_URL = "backend/especialidad.php";
+const SERVICIOS_API_URL = "backend/servicio.php";
+const DOCTORES_API_URL = "backend/medico.php?id_especialidad=";
+const CITAS_API_URL = "backend/cita.php";
+
+function fetchPacientes() {
+    fetch(PACIENTES_API_URL)
+        .then(response => response.json())
+        .then(data => {
+            const selectPaciente = document.getElementById('id_paciente');
+            if (selectPaciente) {
+                data.forEach(paciente => {
+                    const option = document.createElement('option');
+                    option.value = paciente.id_paciente;
+                    option.textContent = `${paciente.nombre_paciente} ${paciente.apellido_paciente || ''}`;
+                    selectPaciente.appendChild(option);
+                });
+            }
+        })
+        .catch(error => console.error("Error al obtener pacientes:", error));
+}
+
+function fetchEspecialidades() {
+    fetch(ESPECIALIDADES_API_URL)
+        .then(response => response.json())
+        .then(data => {
+            const selectEspecialidad = document.getElementById('especialidad');
+            if (selectEspecialidad) {
+                data.forEach(especialidad => {
+                    const option = document.createElement('option');
+                    option.value = especialidad.id_especialidad;
+                    option.textContent = especialidad.nombre_especialidad;
+                    selectEspecialidad.appendChild(option);
+                });
+            }
+        })
+        .catch(error => console.error("Error al obtener especialidades:", error));
+}
+
+function fetchServicios() {
+    fetch(SERVICIOS_API_URL)
+        .then(response => response.json())
+        .then(data => {
+            const selectServicio = document.getElementById('id_servicio');
+            if (selectServicio) {
+                selectServicio.innerHTML = '<option value="">Seleccione un servicio</option>';
+                data.forEach(servicio => {
+                    const option = document.createElement('option');
+                    option.value = servicio.id_servicio;
+                    option.textContent = servicio.nombre_servicio || servicio.descripcion_servicio || `Servicio ID: ${servicio.id_servicio}`;
+                    selectServicio.appendChild(option);
+                });
+            }
+        })
+        .catch(error => console.error("Error al obtener servicios:", error));
+}
+
+function fetchDoctores(especialidadId) {
+    fetch(`${DOCTORES_API_URL}${especialidadId}`)
+        .then(response => response.json())
+        .then(data => {
+            const selectDoctor = document.getElementById('doctor');
+            if (selectDoctor) {
+                selectDoctor.innerHTML = '<option value="">Seleccione un doctor</option>';
+                data.forEach(doctor => {
+                    const option = document.createElement('option');
+                    option.value = doctor.id_medico;
+                    option.textContent = `${doctor.nombre_medico} ${doctor.apellido || ''}`;
+                    selectDoctor.appendChild(option);
+                });
+            }
+        })
+        .catch(error => console.error("Error al obtener doctores:", error));
+}
+
+function populateHoras() {
+    const selectHora = document.getElementById('hora_cita');
+    if (selectHora) {
+        selectHora.innerHTML = '<option value="">Seleccione una hora</option>';
+        for (let i = 8; i <= 20; i++) {
+            let hour = i < 10 ? '0' + i : i;
+            let option = document.createElement('option');
+            option.value = `${hour}:00`;
+            option.textContent = `${hour}:00`;
+            selectHora.appendChild(option);
+        }
+    }
+}
+
+function agendarCita() {
+    const id_paciente = document.getElementById('id_paciente').value;
+    const id_medico = document.getElementById('doctor').value;
+    const id_servicio = document.getElementById('id_servicio').value;
+    const fecha_cita = document.getElementById('fecha_cita').value;
+    const hora_cita = document.getElementById('hora_cita').value;
+    const motivo_cita = document.getElementById('motivo_cita').value;
+
+    const citaData = {
+        id_paciente: id_paciente,
+        id_medico: id_medico,
+        id_servicio: id_servicio,
+        fecha_cita: fecha_cita,
+        hora_cita: hora_cita,
+        motivo_cita: motivo_cita
+    };
+
+    fetch(CITAS_API_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(citaData)
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Cita agendada con éxito!");
+                const citaFormElement = document.getElementById('citaForm');
+                if (citaFormElement) {
+                    citaFormElement.reset();
+                }
+            } else {
+                alert("Error al agendar la cita.");
+                console.error("Error al agendar la cita:", data);
+            }
+        })
+        .catch(error => {
+            alert("Ocurrió un error al agendar la cita.");
+            console.error("Error al enviar la cita:", error);
+        });
+}

@@ -1,14 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     const forgotPassword = document.getElementById('forgotPassword');
-
+    const loginError = document.getElementById('loginError'); 
     loginForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-
-      
         //envia los datos al servidor usando POST y el HEADER con el formato de dato que se va a enviar
         const response = await fetch('backend/login.php',{
             method: 'POST',
@@ -22,13 +20,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if(response.ok){
             //login exitoso
+            localStorage.setItem('isLoggedIn', 'true'); 
             window.location.href ='index.html';
         }else{
             loginError.style.display = 'block';
             loginError.textContent = result.error;
         }
 
-       /* // Verificación de las credenciales del administrador
+        /* // Verificación de las credenciales del administrador (Comentado, usa el backend ahora)
         if (email === 'paciente@gmail.com' && password === 'paciente12345') {
             console.log('Inicio de sesión exitoso');
             localStorage.setItem('isLoggedIn', 'true');
@@ -38,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Correo electrónico o contraseña incorrectos. Por favor, intente de nuevo.');
         }*/
     });
-        
+
     forgotPassword.addEventListener('click', function(e) {
         e.preventDefault();
         alert('Función de recuperación de contraseña no implementada.');

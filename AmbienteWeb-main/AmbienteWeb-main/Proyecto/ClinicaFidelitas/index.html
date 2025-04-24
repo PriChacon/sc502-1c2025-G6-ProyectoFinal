@@ -13,59 +13,17 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
- 
+
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="imagenes/Clinica-removebg-preview.png" alt="Clínica Fidelitas Logo" height=""></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link font-weight-bold" href="index.html">Inicio</a>
-                    </li>
-                    <li class="nav-item" id="agendar-cita-item">
-                        <a class="nav-link" href="AgendarCita.html" id="agendarCitaLink">Agendar Cita</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#servicios">Servicios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#nosotros">Nosotros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Contacto.html">Contacto</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Configuraciones
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="Rol.html">Rol</a></li>
-                            <li><a class="dropdown-item" href="serviciosConfiguracion.html">Servicios</a></li>
-                            <li><a class="dropdown-item" href="horariosConfiguracion.html">Horarios</a></li>
-                            <li><a class="dropdown-item" href="usuariosConfiguracion.html">Usuarios</a></li>
-                            <li><a class="dropdown-item" href="Especialidades.html">Especialidad</a></li>
-                            <li><a class="dropdown-item" href="Medico.html">MEDICO</a></li>
-                            <li><a class="dropdown-item" href="Paciente.html">PACIENTE</a></li>
-                            <li><a class="dropdown-item" href="tratamiento.html">TRATAMIENTO</a></li>
-                            <li><a class="dropdown-item" href="Cita.html">CITA</a></li>
-                            <li><a class="dropdown-item" href="horariosConfiguracion.html">HORARIO-MEDICO</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <div class="ms-3" id="loginLogoutItem">
-                    <a href="login.html" class="btn btn-outline-primary" id="loginLogoutLink">Iniciar Sesión</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <div id="menu-container"></div>
 
+    <script src="js/auth.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/seccion.js"></script>
+    
     <!-- Hero Section -->
     <section class="hero-section text-white">
         <div class="overlay"></div>
@@ -74,7 +32,8 @@
                 <div class="col-lg-8 mx-auto text-center position-relative">
                     <h1 class="display-4 fw-bold mb-3">Bienvenido a Clínica Fidelitas</h1>
                     <h2 class="h3 mb-4">Su Salud, Nuestra Prioridad</h2>
-                    <p class="lead mb-5">Ofrecemos atención médica de calidad con un enfoque centrado en el paciente. Nuestro equipo de profesionales está comprometido con su bienestar y comodidad.</p>
+                    <p class="lead mb-5">Ofrecemos atención médica de calidad con un enfoque centrado en el paciente.
+                        Nuestro equipo de profesionales está comprometido con su bienestar y comodidad.</p>
                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                         <a href="AgendarCita.html" class="btn btn-primary btn-lg px-4 gap-3">
                             <i class="fas fa-calendar-check me-2"></i>Agendar Cita
@@ -94,7 +53,8 @@
             <div class="row text-center mb-5">
                 <div class="col-lg-8 mx-auto">
                     <h2 class="fw-bold">Nuestros Servicios</h2>
-                    <p class="lead text-muted">Ofrecemos una amplia gama de servicios médicos para cuidar de su salud</p>
+                    <p class="lead text-muted">Ofrecemos una amplia gama de servicios médicos para cuidar de su salud
+                    </p>
                 </div>
             </div>
             <div class="row g-4">
@@ -105,7 +65,8 @@
                                 <i class="fas fa-stethoscope"></i>
                             </div>
                             <h3 class="h5 card-title">Medicina General</h3>
-                            <p class="card-text">Atención médica integral para toda la familia, desde consultas de rutina hasta tratamientos específicos.</p>
+                            <p class="card-text">Atención médica integral para toda la familia, desde consultas de
+                                rutina hasta tratamientos específicos.</p>
                         </div>
                     </div>
                 </div>
@@ -116,7 +77,8 @@
                                 <i class="fas fa-heartbeat"></i>
                             </div>
                             <h3 class="h5 card-title">Especialidades Médicas</h3>
-                            <p class="card-text">Contamos con especialistas en cardiología, neurología, pediatría y más para brindarle la mejor atención.</p>
+                            <p class="card-text">Contamos con especialistas en cardiología, neurología, pediatría y más
+                                para brindarle la mejor atención.</p>
                         </div>
                     </div>
                 </div>
@@ -127,7 +89,8 @@
                                 <i class="fas fa-microscope"></i>
                             </div>
                             <h3 class="h5 card-title">Laboratorio Clínico</h3>
-                            <p class="card-text">Análisis clínicos con tecnología de punta y resultados rápidos y precisos para un diagnóstico oportuno.</p>
+                            <p class="card-text">Análisis clínicos con tecnología de punta y resultados rápidos y
+                                precisos para un diagnóstico oportuno.</p>
                         </div>
                     </div>
                 </div>
@@ -138,7 +101,8 @@
                                 <i class="fas fa-pills"></i>
                             </div>
                             <h3 class="h5 card-title">Farmacia</h3>
-                            <p class="card-text">Medicamentos de calidad y asesoría farmacéutica para garantizar el tratamiento adecuado.</p>
+                            <p class="card-text">Medicamentos de calidad y asesoría farmacéutica para garantizar el
+                                tratamiento adecuado.</p>
                         </div>
                     </div>
                 </div>
@@ -149,7 +113,8 @@
                                 <i class="fas fa-tooth"></i>
                             </div>
                             <h3 class="h5 card-title">Odontología</h3>
-                            <p class="card-text">Servicios odontológicos completos para mantener su sonrisa saludable y radiante.</p>
+                            <p class="card-text">Servicios odontológicos completos para mantener su sonrisa saludable y
+                                radiante.</p>
                         </div>
                     </div>
                 </div>
@@ -160,7 +125,8 @@
                                 <i class="fas fa-chart-line"></i>
                             </div>
                             <h3 class="h5 card-title">Chequeos Preventivos</h3>
-                            <p class="card-text">Programas de prevención y detección temprana para mantener su salud en óptimas condiciones.</p>
+                            <p class="card-text">Programas de prevención y detección temprana para mantener su salud en
+                                óptimas condiciones.</p>
                         </div>
                     </div>
                 </div>
@@ -186,8 +152,11 @@
                 </div>
                 <div class="col-lg-6">
                     <h3 class="mb-4">Nuestra Historia</h3>
-                    <p>Fundada en 2005, Clínica Fidelitas nació con la misión de proporcionar atención médica de calidad a nuestra comunidad. A lo largo de los años, hemos crecido y evolucionado, pero nuestro compromiso con la excelencia en el cuidado de la salud sigue siendo el mismo.</p>
-                    <p>Contamos con un equipo de profesionales altamente calificados y dedicados, equipos médicos de última generación y un enfoque centrado en el paciente que nos distingue.</p>
+                    <p>Fundada en 2005, Clínica Fidelitas nació con la misión de proporcionar atención médica de calidad
+                        a nuestra comunidad. A lo largo de los años, hemos crecido y evolucionado, pero nuestro
+                        compromiso con la excelencia en el cuidado de la salud sigue siendo el mismo.</p>
+                    <p>Contamos con un equipo de profesionales altamente calificados y dedicados, equipos médicos de
+                        última generación y un enfoque centrado en el paciente que nos distingue.</p>
                     <div class="row mt-4">
                         <div class="col-md-6">
                             <div class="d-flex align-items-center mb-3">
@@ -254,8 +223,11 @@
                             <div class="carousel-item active">
                                 <div class="card border-0 shadow-sm">
                                     <div class="card-body p-5 text-center">
-                                        <img src="imagenes/testimonio1.jpg" class="rounded-circle mb-3" width="80" height="80" alt="María Rodríguez">
-                                        <p class="lead fst-italic mb-4">"La atención en Clínica Fidelitas ha sido excepcional. El personal médico es muy profesional y siempre me han tratado con amabilidad y respeto."</p>
+                                        <img src="imagenes/testimonio1.jpg" class="rounded-circle mb-3" width="80"
+                                            height="80" alt="María Rodríguez">
+                                        <p class="lead fst-italic mb-4">"La atención en Clínica Fidelitas ha sido
+                                            excepcional. El personal médico es muy profesional y siempre me han tratado
+                                            con amabilidad y respeto."</p>
                                         <h5 class="mb-1">María Rodríguez</h5>
                                         <p class="text-muted">Paciente</p>
                                     </div>
@@ -264,8 +236,11 @@
                             <div class="carousel-item">
                                 <div class="card border-0 shadow-sm">
                                     <div class="card-body p-5 text-center">
-                                        <img src="imagenes/testimonio2.jpg" class="rounded-circle mb-3" width="80" height="80" alt="Carlos Jiménez">
-                                        <p class="lead fst-italic mb-4">"Gracias a los especialistas de Clínica Fidelitas, mi recuperación fue mucho más rápida de lo esperado. Recomiendo ampliamente sus servicios."</p>
+                                        <img src="imagenes/testimonio2.jpg" class="rounded-circle mb-3" width="80"
+                                            height="80" alt="Carlos Jiménez">
+                                        <p class="lead fst-italic mb-4">"Gracias a los especialistas de Clínica
+                                            Fidelitas, mi recuperación fue mucho más rápida de lo esperado. Recomiendo
+                                            ampliamente sus servicios."</p>
                                         <h5 class="mb-1">Carlos Jiménez</h5>
                                         <p class="text-muted">Paciente</p>
                                     </div>
@@ -274,20 +249,27 @@
                             <div class="carousel-item">
                                 <div class="card border-0 shadow-sm">
                                     <div class="card-body p-5 text-center">
-                                        <img src="imagenes/testimonio3.jpg" class="rounded-circle mb-3" width="80" height="80" alt="Ana Martínez">
-                                        <p class="lead fst-italic mb-4">"El servicio de laboratorio es rápido y eficiente. Los resultados son precisos y el personal siempre está dispuesto a resolver cualquier duda."</p>
+                                        <img src="imagenes/testimonio3.jpg" class="rounded-circle mb-3" width="80"
+                                            height="80" alt="Ana Martínez">
+                                        <p class="lead fst-italic mb-4">"El servicio de laboratorio es rápido y
+                                            eficiente. Los resultados son precisos y el personal siempre está dispuesto
+                                            a resolver cualquier duda."</p>
                                         <h5 class="mb-1">Ana Martínez</h5>
                                         <p class="text-muted">Paciente</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon bg-primary rounded-circle" aria-hidden="true"></span>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon bg-primary rounded-circle"
+                                aria-hidden="true"></span>
                             <span class="visually-hidden">Anterior</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon bg-primary rounded-circle" aria-hidden="true"></span>
+                        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon bg-primary rounded-circle"
+                                aria-hidden="true"></span>
                             <span class="visually-hidden">Siguiente</span>
                         </button>
                     </div>
@@ -302,7 +284,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-8 mb-4 mb-lg-0">
                     <h2 class="fw-bold mb-3">¿Necesita atención médica?</h2>
-                    <p class="lead mb-0">No espere más para cuidar su salud. Agende una cita con nuestros especialistas y reciba la atención que merece.</p>
+                    <p class="lead mb-0">No espere más para cuidar su salud. Agende una cita con nuestros especialistas
+                        y reciba la atención que merece.</p>
                 </div>
                 <div class="col-lg-4 text-lg-end">
                     <a href="AgendarCita.html" class="btn btn-light btn-lg px-4">
@@ -318,8 +301,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 mb-4 mb-lg-0">
-                    <img src="imagenes/Clinica-removebg-preview.png" alt="Clínica Fidelitas Logo" class="mb-4" height="180">
-                    <p>Su salud es nuestra prioridad. Contamos con profesionales altamente calificados y tecnología de vanguardia para brindarle la mejor atención médica.</p>
+                    <img src="imagenes/Clinica-removebg-preview.png" alt="Clínica Fidelitas Logo" class="mb-4"
+                        height="180">
+                    <p>Su salud es nuestra prioridad. Contamos con profesionales altamente calificados y tecnología de
+                        vanguardia para brindarle la mejor atención médica.</p>
                     <div class="mt-4">
                         <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
@@ -330,21 +315,30 @@
                 <div class="col-lg-3 mb-4 mb-lg-0">
                     <h5 class="mb-4">Servicios</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#servicios" class="text-white-50 text-decoration-none">Medicina General</a></li>
-                        <li class="mb-2"><a href="#servicios" class="text-white-50 text-decoration-none">Especialidades Médicas</a></li>
-                        <li class="mb-2"><a href="#servicios" class="text-white-50 text-decoration-none">Laboratorio Clínico</a></li>
-                        <li class="mb-2"><a href="#servicios" class="text-white-50 text-decoration-none">Farmacia</a></li>
-                        <li class="mb-2"><a href="#servicios" class="text-white-50 text-decoration-none">Odontología</a></li>
+                        <li class="mb-2"><a href="#servicios" class="text-white-50 text-decoration-none">Medicina
+                                General</a></li>
+                        <li class="mb-2"><a href="#servicios" class="text-white-50 text-decoration-none">Especialidades
+                                Médicas</a></li>
+                        <li class="mb-2"><a href="#servicios" class="text-white-50 text-decoration-none">Laboratorio
+                                Clínico</a></li>
+                        <li class="mb-2"><a href="#servicios" class="text-white-50 text-decoration-none">Farmacia</a>
+                        </li>
+                        <li class="mb-2"><a href="#servicios" class="text-white-50 text-decoration-none">Odontología</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-lg-3 mb-4 mb-lg-0">
                     <h5 class="mb-4">Enlaces Rápidos</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none">Inicio</a></li>
-                        <li class="mb-2"><a href="#nosotros" class="text-white-50 text-decoration-none">Nosotros</a></li>
-                        <li class="mb-2"><a href="#servicios" class="text-white-50 text-decoration-none">Servicios</a></li>
-                        <li class="mb-2"><a href="AgendarCita.html" class="text-white-50 text-decoration-none">Agendar Cita</a></li>
-                        <li class="mb-2"><a href="Contacto.html" class="text-white-50 text-decoration-none">Contacto</a></li>
+                        <li class="mb-2"><a href="#nosotros" class="text-white-50 text-decoration-none">Nosotros</a>
+                        </li>
+                        <li class="mb-2"><a href="#servicios" class="text-white-50 text-decoration-none">Servicios</a>
+                        </li>
+                        <li class="mb-2"><a href="AgendarCita.html" class="text-white-50 text-decoration-none">Agendar
+                                Cita</a></li>
+                        <li class="mb-2"><a href="Contacto.html" class="text-white-50 text-decoration-none">Contacto</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-lg-3">
@@ -372,7 +366,8 @@
             <hr class="my-4">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-0">&copy; <span id="current-year"></span> Clínica Fidelitas. Todos los derechos reservados.</p>
+                    <p class="mb-0">&copy; <span id="current-year"></span> Clínica Fidelitas. Todos los derechos
+                        reservados.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <a href="#" class="text-white-50 text-decoration-none me-3">Términos y Condiciones</a>
@@ -385,94 +380,9 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
-    <script src="js/script.js"></script>
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginLogoutLink = document.getElementById('loginLogoutLink');
-            const agendarCitaLink = document.getElementById('agendarCitaLink');
-            const agendarCitaItem = document.getElementById('agendar-cita-item');
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-        
-            if (isLoggedIn) {
-                loginLogoutLink.textContent = 'Cerrar Sesión';
-                loginLogoutLink.className = 'btn btn-outline-danger';
-                loginLogoutLink.href = '#';
-                loginLogoutLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    localStorage.removeItem('isLoggedIn');
-                    window.location.href = 'index.html';
-                });
-                if (agendarCitaLink) {
-                    agendarCitaLink.style.display = 'block';
-                }
-                if (agendarCitaItem) {
-                    agendarCitaItem.style.display = 'block';
-                }
-            } else {
-                loginLogoutLink.textContent = 'Iniciar Sesión';
-                loginLogoutLink.className = 'btn btn-outline-primary';
-                loginLogoutLink.href = 'login.html';
-                if (agendarCitaLink) {
-                    agendarCitaLink.style.display = 'none';
-                }
-                if (agendarCitaItem) {
-                    agendarCitaItem.style.display = 'none';
-                }
-            }
-        
-            // Verificamos si estamos en la página de Agendar Cita
-            if (window.location.pathname.includes('AgendarCita.html') && !isLoggedIn) {
-                window.location.href = 'login.html';
-            }
-            
-            // Mostrar año actual en el footer
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-            
-            // Ocultar secciones de administración si no es admin
-            if (!isLoggedIn) {
-                document.querySelectorAll('.admin-section').forEach(section => {
-                    section.style.display = 'none';
-                });
-            }
 
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if(targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        
-                        // Update URL without jumping
-                        if(history.pushState) {
-                            history.pushState(null, null, targetId);
-                        } else {
-                            window.location.hash = targetId;
-                        }
-                    }
-                });
-            });
-            
-            // Handle scroll when page loads with a hash
-            if(window.location.hash) {
-                const targetElement = document.querySelector(window.location.hash);
-                if(targetElement) {
-                    setTimeout(() => {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }, 100);
-                }
-            }
-        });
-    </script>
+    
 </body>
+
 </html>

@@ -95,6 +95,7 @@ function getJsonInput() {
     return json_decode($json, true);
 }
 
+session_start();
 try {
     switch ($method) {
         case 'POST':

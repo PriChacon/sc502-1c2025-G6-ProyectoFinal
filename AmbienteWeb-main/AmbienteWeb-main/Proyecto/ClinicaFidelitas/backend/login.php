@@ -14,6 +14,7 @@ function login($username, $password)
         if (password_verify($password, $user['contraseña'])) {
             session_start();
             $_SESSION['user_id'] = $user["id_usuario"];
+            $_SESSION['user_role_id'] = $user["id_rol"];
             return true;
         }
     }
