@@ -156,8 +156,8 @@ function renderTratamientos() {
         const row = document.createElement("tr");
         row.innerHTML = `
             <td>${tratamiento.id_tratamiento}</td>
-            <td>${tratamiento.nombre_paciente}</td>
-            <td>${tratamiento.servicio}</td>
+            <td>${tratamiento.paciente_nombre}</td>
+            <td>${tratamiento.paciente_apellido}</td>
             <td>${tratamiento.descripcion || ''}</td>
             <td>${tratamiento.fecha_inicio}</td>
             <td>${tratamiento.fecha_fin || ''}</td>
