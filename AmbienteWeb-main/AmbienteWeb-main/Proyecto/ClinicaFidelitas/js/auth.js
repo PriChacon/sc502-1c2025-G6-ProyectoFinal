@@ -49,7 +49,7 @@ async function checkAdminRole() {
             configuracionesMenu.style.display = 'none';
         }
     } else {
-        // If not logged in, hide the configurations menu
+ 
         configuracionesMenu.style.display = 'none';
     }
 }

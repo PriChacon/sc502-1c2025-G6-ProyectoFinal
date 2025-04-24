@@ -103,7 +103,7 @@ try {
             }
             break;
         case 'DELETE':
-            // Check both URL parameters and JSON input
+    
             $id = isset($_GET['id']) ? $_GET['id'] : null;
             
             if (!$id) {
@@ -125,7 +125,7 @@ try {
             }
             break;
         case 'PUT':
-            // Check both URL parameters and JSON input
+
             $id = isset($_GET['id']) ? $_GET['id'] : null;
             $input = getJsonInput();
             
