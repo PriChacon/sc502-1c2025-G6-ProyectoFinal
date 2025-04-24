@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Clínica Fidelitas - Médicos</title>
+    <style>
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+        }
+        .nav-item.dropdown .dropdown-toggle::after {
+            content: none;
+        }
+        .btn-sm {
+            margin: 0 2px;
+        }
+        .table th {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html"><img src="imagenes/logo.png" alt="Logo" id="logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="AgendarCita.html" id="agendarCitaLink">Agendar Cita</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Servicios.html">Servicios</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Nosotros.html">Nosotros</a></li>
+                        <li class="nav-item"><a class="nav-link" href="Contacto.html">Contacto</a></li>
+                        <li class="nav-item" id="loginLogoutItem"><a class="nav-link" href="login.html" id="loginLogoutLink">Iniciar Sesión</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" role="button" data-bs-toggle="dropdown">Configuraciones</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item" href="Rol.html">Rol</a></li>
+                                <li><a class="dropdown-item" href="serviciosConfiguracion.html">Servicios</a></li>
+                                <li><a class="dropdown-item" href="horariosConfiguracion.html">Horarios</a></li>
+                                <li><a class="dropdown-item" href="usuariosConfiguracion.html">Usuarios</a></li>
+                                <li><a class="dropdown-item" href="especialidades.html">Especialidad</a></li>
+                                <li><a class="dropdown-item" href="medicos.html">Médico</a></li>
+                                <li><a class="dropdown-item" href="#">PACIENTE</a></li>
+                                <li><a class="dropdown-item" href="#">TRATAMIENTO</a></li>
+                                <li><a class="dropdown-item" href="#">CITA</a></li>
+                                <li><a class="dropdown-item" href="#">HORARIO-MEDICO</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Configuración de Médicos</h1>
+        <div class="card mb-4">
+            <div class="card-body">
+                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#medicoModal">Agregar Médico</button>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Especialidad</th>
+                                <th>Teléfono</th>
+                                <th>Horario</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="medicosTableBody">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="medicoModal" tabindex="-1" aria-labelledby="medicoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="medicoForm">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Agregar Médico</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="nombreMedico" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombreMedico" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="apellidoMedico" class="form-label">Apellido</label>
+                            <input type="text" class="form-control" id="apellidoMedico" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="especialidadMedico" class="form-label">Especialidad</label>
+                            <select class="form-select" id="especialidadMedico" required>
+                                <option value="">Seleccionar Especialidad</option>
+                                </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefonoMedico" class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" id="telefonoMedico">
+                        </div>
+                        <div class="mb-3">
+                            <label for="horarioMedico" class="form-label">Horario</label>
+                            <input type="text" class="form-control" id="horarioMedico">
+                        </div>
+                        <input type="hidden" id="idMedico">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-5 text-center">
+        <p>&copy; 2025 Clínica Fidelitas. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/medico.js"></script>
+</body>
+</html>

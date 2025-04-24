@@ -1,91 +1,332 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conoce la misión, visión y valores de Clínica Fidelitas. Excelencia en cuidado médico desde 2005.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <div id="contenido"></div>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Document</title>
+    <title>Nosotros - Clínica Fidelitas</title>
 </head>
+
+<body>
 <header>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="imagenes/logo.png" alt="Logo" id="logo"></a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><img src="imagenes/Clinica-removebg-preview.png" alt="Clínica Fidelitas Logo" class="logo-navbar"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="AgendarCita.html" id="agendarCitaLink">Agendar Cita</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Servicios.html">Servicios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Nosotros.html">Nosotros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Contacto.html">Contacto</a>
-                    </li>
-                    <li class="nav-item" id="loginLogoutItem">
-                        <a class="nav-link" href="login.html" id="loginLogoutLink">Iniciar Sesión</a>
-                    </li>                      
-                </ul>
-            </div>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link " href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="AgendarCita.html" id="agendarCitaLink">Agendar Cita</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="Servicios.html">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="Nosotros.html">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="Contacto.html">Contacto</a>
+                </li>
+                <li class="nav-item" id="loginLogoutItem">
+                    <a class="nav-link " href="login.html" id="loginLogoutLink">Iniciar Sesión</a>
+                </li>                      
+            </ul>
         </div>
-    </nav>
-
-
-    <main class="container mt-5">
-        <div id="nosotros-content"></div>
-    </main>
-
-    <footer class="py-5 text-center">
-        <p>&copy; 2025 Clínica Fidelitas. Todos los derechos reservados.</p>
-    </footer>
-
-    <script src="js/Nosotros.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginLogoutLink = document.getElementById('loginLogoutLink');
-            const agendarCitaLink = document.getElementById('agendarCitaLink');
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-        
-            if (isLoggedIn) {
-                loginLogoutLink.textContent = 'Cerrar Sesión';
-                loginLogoutLink.href = '#';
-                loginLogoutLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    localStorage.removeItem('isLoggedIn');
-                    window.location.href = 'index.html';
-                });
-                if (agendarCitaLink) {
-                    agendarCitaLink.style.display = 'block';
-                }
-            } else {
-                loginLogoutLink.textContent = 'Iniciar Sesión';
-                loginLogoutLink.href = 'login.html';
-                if (agendarCitaLink) {
-                    agendarCitaLink.style.display = 'none';
-                }
-            }
-        
-            // Verificamos si estamos en la página de Agendar Cita
-            if (window.location.pathname.includes('AgendarCita.html') && !isLoggedIn) {
-                window.location.href = 'login.html';
-            }
-        });
-        </script>
-  
+    </div>
+</nav>
 </header>
 
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-nosotros bg-primary text-white py-5 mt-5">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <h1 class="fw-bold display-4 mb-3">Sobre Nosotros</h1>
+                        <p class=" text-black">Más de 15 años de excelencia en cuidado médico</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Historia Section -->
+        <section class="py-5">
+            <div class="container py-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <img src="imagenes/Equipo.webp" alt="Consultorio Clínica Fidelitas" class="img-fluid rounded shadow-lg ">
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="mb-4 text-primary">Nuestra Historia</h2>
+                        <p class="lead">Fundada en 2005, Clínica Fidelitas nació con la misión de revolucionar el cuidado médico en nuestra comunidad.</p>
+                        <p>Desde nuestros humildes comienzos con solo tres consultorios, hemos crecido hasta convertirnos en un centro médico integral con más de 15 especialidades. Lo que nos distingue es nuestro enfoque centrado en el paciente, combinando tecnología de vanguardia con un trato humano y personalizado.</p>
+                        <p>Hoy contamos con un equipo de más de 50 profesionales altamente calificados y equipos médicos de última generación, pero nuestro compromiso con la excelencia sigue siendo el mismo que el primer día.</p>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="feature-icon bg-primary text-white rounded-circle me-3 p-3">
+                                                <i class="fas fa-user-md fa-lg"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-0">Profesionales Certificados</h5>
+                                                <small class="text-muted">Especialistas en 15+ áreas</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="feature-icon bg-primary text-white rounded-circle me-3 p-3">
+                                                <i class="fas fa-hospital fa-lg"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-0">Instalaciones Modernas</h5>
+                                                <small class="text-muted">Tecnología de última generación</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="feature-icon bg-primary text-white rounded-circle me-3 p-3">
+                                                <i class="fas fa-procedures fa-lg"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-0">Atención Personalizada</h5>
+                                                <small class="text-muted">Enfoque centrado en el paciente</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="feature-icon bg-primary text-white rounded-circle me-3 p-3">
+                                                <i class="fas fa-clipboard-check fa-lg"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="mb-0">Certificaciones</h5>
+                                                <small class="text-muted">Estándares internacionales</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Compromiso -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <section class="mb-5">
+                    <h1 class="text-center text-primary mb-3">Nuestro Compromiso</h1>
+                    <h3 class="text-center text-secondary mb-4">Excelencia en cuidado médico desde 2005</h3>
+                    <p class="lead text-center px-lg-5">En Clínica Fidelitas nos dedicamos a proporcionar servicios de salud integrales con un enfoque humano y tecnología de vanguardia.</p>
+                </section>
+
+                <div class="row g-4 mb-5">
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-heartbeat fa-3x text-primary mb-3"></i>
+                                <h3 class="h4">Misión</h3>
+                                <p class="mt-3">Ofrecer atención médica de calidad, accesible y personalizada, mejorando la salud y bienestar de nuestros pacientes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-eye fa-3x text-primary mb-3"></i>
+                                <h3 class="h4">Visión</h3>
+                                <p class="mt-3">Ser reconocidos como el centro médico líder en nuestra región, destacando por nuestra innovación, calidez humana y resultados excepcionales.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-hand-holding-heart fa-3x text-primary mb-3"></i>
+                                <h3 class="h4">Valores</h3>
+                                <ul class="text-start mt-3 ps-4">
+                                    <li>Compromiso con la excelencia médica</li>
+                                    <li>Empatía y trato humano</li>
+                                    <li>Innovación tecnológica constante</li>
+                                    <li>Ética profesional inquebrantable</li>
+                                    <li>Trabajo en equipo multidisciplinario</li>
+                                    <li>Responsabilidad social</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="bg-white py-4 rounded-3 mb-5">
+                    <div class="container">
+                        <h2 class="text-center mb-4">Nuestro Equipo</h2>
+                        <p class="text-center mb-5">Contamos con especialistas en más de 15 áreas médicas, todos certificados y en constante actualización.</p>
+                        
+                        <div class="row text-center">
+                            <div class="col-md-4">
+                                <h3 class="text-primary">50+</h3>
+                                <p class="text-muted">Profesionales</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h3 class="text-primary">15+</h3>
+                                <p class="text-muted">Especialidades</p>
+                            </div>
+                            <div class="col-md-4">
+                                <h3 class="text-primary">10k+</h3>
+                                <p class="text-muted">Pacientes anuales</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="text-center mt-4">
+                    <a href="Contacto.html" class="btn btn-primary btn-lg px-4">Contáctenos</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Equipo Médico -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <h2 class="fw-bold text-primary">Conoce Nuestro Equipo</h2>
+                        <p class="lead text-muted">Profesionales comprometidos con tu bienestar</p>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <img src="imagenes/docto1.jpg" class="card-img-top" alt="Dr. Juan Pérez">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Dr. Juan Pérez</h5>
+                                <p class="text-muted">Cardiólogo</p>
+                                <p class="card-text">Especialista con más de 15 años de experiencia en enfermedades cardiovasculares.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <img src="imagenes/doctora4.avif" class="card-img-top" alt="Dra. María Gómez">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Dra. María Gómez</h5>
+                                <p class="text-muted">Pediatra</p>
+                                <p class="card-text">Especializada en cuidado infantil y medicina preventiva para niños.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <img src="imagenes/doctor3.jpg" class="card-img-top" alt="Dr. Carlos Rodríguez">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Dr. Carlos Rodríguez</h5>
+                                <p class="text-muted">Ortopedista</p>
+                                <p class="card-text">Experto en cirugía reconstructiva y tratamiento de lesiones deportivas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-5">
+                    <a href="Servicios.html" class="btn btn-primary btn-lg px-4">Ver todos los especialistas</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <a class="navbar-brand" href="index.html"><img src="imagenes/logo.png" alt="Clínica Fidelitas Logo" height="50"></a>
+                    <p>Su salud es nuestra prioridad. Contamos con profesionales altamente calificados y tecnología de vanguardia para brindarle la mejor atención médica.</p>
+                    <div class="mt-4">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Servicios</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="Servicios.html" class="text-white-50 text-decoration-none">Medicina General</a></li>
+                        <li class="mb-2"><a href="Servicios.html" class="text-white-50 text-decoration-none">Especialidades Médicas</a></li>
+                        <li class="mb-2"><a href="Servicios.html" class="text-white-50 text-decoration-none">Laboratorio Clínico</a></li>
+                        <li class="mb-2"><a href="Servicios.html" class="text-white-50 text-decoration-none">Farmacia</a></li>
+                        <li class="mb-2"><a href="Servicios.html" class="text-white-50 text-decoration-none">Odontología</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Enlaces Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white-50 text-decoration-none">Inicio</a></li>
+                        <li class="mb-2"><a href="Nosotros.html" class="text-white-50 text-decoration-none">Nosotros</a></li>
+                        <li class="mb-2"><a href="Servicios.html" class="text-white-50 text-decoration-none">Servicios</a></li>
+                        <li class="mb-2"><a href="AgendarCita.html" class="text-white-50 text-decoration-none">Agendar Cita</a></li>
+                        <li class="mb-2"><a href="Contacto.html" class="text-white-50 text-decoration-none">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h5 class="mb-4">Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-3 d-flex">
+                            <i class="fas fa-map-marker-alt mt-1 me-3"></i>
+                            <span>Av. Principal #123, San José, Costa Rica</span>
+                        </li>
+                        <li class="mb-3 d-flex">
+                            <i class="fas fa-phone-alt mt-1 me-3"></i>
+                            <span>(506) 2222-3333</span>
+                        </li>
+                        <li class="mb-3 d-flex">
+                            <i class="fas fa-envelope mt-1 me-3"></i>
+                            <span>info@clinicafidelitas.com</span>
+                        </li>
+                        <li class="d-flex">
+                            <i class="fas fa-clock mt-1 me-3"></i>
+                            <span>Lun - Vie: 7:00 AM - 7:00 PM<br>Sáb: 8:00 AM - 2:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; <span id="current-year"></span> Clínica Fidelitas. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none me-3">Términos y Condiciones</a>
+                    <a href="#" class="text-white-50 text-decoration-none">Política de Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
 </html>

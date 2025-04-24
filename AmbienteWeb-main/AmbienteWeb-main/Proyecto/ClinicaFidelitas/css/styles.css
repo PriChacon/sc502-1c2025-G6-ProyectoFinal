@@ -1,101 +1,181 @@
-.navbar {
-    padding: auto;
-    background-color: #0000ff;
-    display: flexbox;
- 
-}
-.nav-link{
-    color: white;
-    font-size: 1.5rem;
-    margin-left: 2rem;
-    position: relative;
-    font-family: "Times New Roman", serif;
+/* Custom CSS for Clínica Fidelitas */
+
+/* Base Styles */
+:root {
+    --primary: #0d6efd;
+    --primary-dark: #0a58ca;
+    --primary-light: #6ea8fe;
+    --secondary: #6c757d;
+    --success: #198754;
+    --info: #0dcaf0;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --bs-font-sans-serif: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-.nav-link:hover{
-    color: #d8781f;
+body {
+    font-family: var(--bs-font-sans-serif);
+    color: #333;
+    overflow-x: hidden;
 }
 
-.navbar-brand img{
-height: auto;
-width: 50px;
+/* Utility Classes */
+.min-vh-75 {
+    min-height: 75vh;
 }
-.navbar-brand {
-    display: flexbox;
+
+/* Feature Icons */
+.feature-icon {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-left: 55px;
-    }
-
-.navbar-brand:hover
-{
-    color: white;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
 }
-.background-image{
-    background: url(imagenes/background.jpg);
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding-top: 6%;
+
+/* Hero Section */
+.hero-section {
     position: relative;
+    background-image: url('https://via.placeholder.com/1920x1080');
+    background-size: cover;
+    background-position: center;
+    padding: 6rem 0;
+    overflow: hidden;
 }
-.background-content h1{
-    font-family: "Times New Roman", serif;
-   color: black;
-   font-size: 40px;
-   margin-bottom: 20px;
 
-}
-.background-content {
-    font-family: "Times New Roman", serif;
+.hero-section .overlay {
     position: absolute;
-    top: 30%;
-    left: 50%;
-    width: 50%;
-    transform: translate(-80%);
-}
-.background-content a {
-    padding: 1rem 2rem; /* Tamaño del botón */
-    font-size: 1.5rem; /* Tamaño del texto */
-    border-radius: 15px; /* Bordes redondeados */
-    background-color: #d8781f; /* Fondo del botón */
-    color: white; /* Color del texto */
-    text-decoration: none; /* Elimina el subrayado */
-    display: inline-block; /* Para que se comporte como un bloque en línea */
-    transition: background-color 0.3s ease; /* Efecto de transición para el hover */
-}
-.background-content p{
-    font-family: "Times New Roman", serif;
-font-size: 1,5rem;
-margin-bottom: 20px;
-}
-.background-content a:hover {
-    background-color: transparent; /* Se vuelve transparente */
-    opacity: 0.5; /* Opcional: se hace un poco más tenue */
-    color: white; /* Mantiene el color del texto */
-    border: 2px solid white; /* Opcional: para que se vea mejor */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(13, 110, 253, 0.9), rgba(10, 88, 202, 0.8));
+    mix-blend-mode: multiply;
 }
 
-/* Efecto de aparición para la página */
-body {
-    animation: fadeInMoveUp 2s ease-out;
+/* Admin Sections */
+.admin-section {
+    display: none;
 }
 
-/* Definimos la animación */
-@keyframes fadeInMoveUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
+/* Navbar */
+.navbar {
+    padding: 1rem 0;
+}
+
+.navbar-brand img {
+    height: 220px;
+    width: 120%;
+
+}
+
+.navbar .nav-link {
+    color: #333;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: var(--primary);
+}
+
+.navbar .nav-link.active {
+    color: var(--primary);
+}
+
+/* Cards */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 0.5rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Testimonial Carousel */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 3rem;
+    height: 3rem;
+    padding: 1rem;
+}
+
+/* Footer */
+footer a {
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #fff !important;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .hero-section {
+        padding: 4rem 0;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section h2 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .feature-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.25rem;
     }
 }
 
 .nav-item.dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0;
+}
+
+.nav-item.dropdown .dropdown-toggle::after {
+    content: none;
+}
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.feature-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.admin-section {
+    display: none;
 }
 
