@@ -61,7 +61,7 @@ function renderRoles() {
 
     roles.forEach((role) => {
         const row = document.createElement("tr");
-        // Agregado: Mostrar el ID del rol en una columna oculta con data-id
+
         row.innerHTML = `
             <td data-id="${role.id_rol}">${role.nombre_rol}</td>
             <td>

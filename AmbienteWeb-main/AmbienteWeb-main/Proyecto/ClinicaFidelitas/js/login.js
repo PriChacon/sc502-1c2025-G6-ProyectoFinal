@@ -27,15 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loginError.textContent = result.error;
         }
 
-        /* // Verificación de las credenciales del administrador (Comentado, usa el backend ahora)
-        if (email === 'paciente@gmail.com' && password === 'paciente12345') {
-            console.log('Inicio de sesión exitoso');
-            localStorage.setItem('isLoggedIn', 'true');
-            window.location.href = 'index.html';
-        } else {
-            console.log('Credenciales incorrectas');
-            alert('Correo electrónico o contraseña incorrectos. Por favor, intente de nuevo.');
-        }*/
+      
     });
 
     forgotPassword.addEventListener('click', function(e) {

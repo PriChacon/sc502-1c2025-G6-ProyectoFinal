@@ -43,11 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // ELIMINAR ESTE BLOQUE DE CÓDIGO
-    // document.getElementById('citaForm').addEventListener('submit', function (e) {
-    //     e.preventDefault();
-    //     agendarCita();
-    // });
+   
 });
 
 const PACIENTES_API_URL = "backend/paciente.php";

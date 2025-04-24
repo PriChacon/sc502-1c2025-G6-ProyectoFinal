@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -23,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Handle scroll when page loads with a hash
+
     if (window.location.hash) {
         const targetElement = document.querySelector(window.location.hash);
         if (targetElement) {
