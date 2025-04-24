@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchServiciosParaDropdown();
 });
 
-const API_URL = "backend/tratamiento.php"; // Asegúrate de que esta ruta sea correcta
-const PACIENTES_API_URL = "backend/paciente.php"; // Ruta para obtener pacientes
-const SERVICIOS_API_URL = "backend/servicio.php"; // Ruta para obtener servicios
+const API_URL = "backend/tratamiento.php"; 
+const PACIENTES_API_URL = "backend/paciente.php"; 
+const SERVICIOS_API_URL = "backend/servicio.php"; 
 
 let tratamientos = [];
 let pacientesDropdown = [];
@@ -98,7 +98,7 @@ tratamientoModal.addEventListener("show.bs.modal", function (event) {
         modalTitle.textContent = "Agregar Tratamiento";
         tratamientoForm.reset();
         idTratamientoInput.value = "";
-        // Llenar los dropdowns al abrir el modal de agregar
+      
         populatePacientesDropdown();
         populateServiciosDropdown();
         tratamientoForm.addEventListener("submit", handleAddTratamientoSubmit);
@@ -113,7 +113,7 @@ tratamientoModal.addEventListener("show.bs.modal", function (event) {
             fechaInicioInput.value = tratamiento.fecha_inicio;
             fechaFinInput.value = tratamiento.fecha_fin;
             idTratamientoInput.value = tratamiento.id_tratamiento;
-            // Llenar los dropdowns al abrir el modal de editar
+      
             populatePacientesDropdown();
             populateServiciosDropdown();
             tratamientoForm.addEventListener("submit", handleEditTratamientoSubmit);
@@ -121,7 +121,6 @@ tratamientoModal.addEventListener("show.bs.modal", function (event) {
     }
 });
 
-// Limpieza del modal al cerrarse
 tratamientoModal.addEventListener("hidden.bs.modal", function () {
     tratamientoForm.reset();
     tratamientoForm.removeEventListener("submit", handleAddTratamientoSubmit);
